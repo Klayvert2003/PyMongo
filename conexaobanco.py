@@ -424,11 +424,9 @@ lista_marca = [
 data_aleatoria = pd.date_range(start="2000-01-01",end=datetime.today()).to_list()
 
 for _ in tqdm(range(1_000_000)):
-    # try:
     dicio = {
             'cod_venda' : random.randint(1,5000),
             'data_teste': str(random.choice(data_aleatoria)),
-            # 'data_venda' : str(date(year = random.randint(2000, ano), month = random.randint(1,12), day = random.randint(1,30))),
             'cod_cliente' : random.randint(1,5000),
             'nome_cliente': random.choice(lista_nomes), 
             'cod_produto': random.randint(1,5000),
@@ -439,6 +437,4 @@ for _ in tqdm(range(1_000_000)):
             'valor': round(random.uniform(1, 150),2),
             'qtd' : random.randint(1,11)
             }
-    # except:
-    #     continue
     a = coluna.insert_one(dicio)
