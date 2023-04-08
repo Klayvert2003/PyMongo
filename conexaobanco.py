@@ -1,7 +1,7 @@
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 import random
-from datetime import date, datetime
+from datetime import date
 from tqdm import tqdm
 import pandas as pd
 
@@ -10,7 +10,8 @@ client = MongoClient(uri, server_api=ServerApi('1'))
 db = client['vendas']
 coluna = db['vendas']
 
-lista_produtos = ['Sabonete líquido',
+lista_produtos = [
+'Sabonete líquido',
 'Shampoo',
 'Condicionador',
 'Desodorante roll-on',
@@ -421,12 +422,12 @@ lista_marca = [
 'Uniagro',
 ]
 
-data_aleatoria = pd.date_range(start="2000-01-01",end=datetime.today()).to_list()
+data_aleatoria = pd.date_range(start="2000-01-01",end=date.today()).to_list()
 
 for _ in tqdm(range(1_000_000)):
     dicio = {
             'cod_venda' : random.randint(1,5000),
-            'data_teste': str(random.choice(data_aleatoria)),
+            'data': str(random.choice(data_aleatoria)).split(' ')[0],
             'cod_cliente' : random.randint(1,5000),
             'nome_cliente': random.choice(lista_nomes), 
             'cod_produto': random.randint(1,5000),
